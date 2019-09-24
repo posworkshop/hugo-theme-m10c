@@ -25,6 +25,16 @@
           <a target="_blank" href="{{ .url }}">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
         {{ end }}
       </div>
+      {{ if .Site.Params.subscribe.enabled}}
+        <div class="app-header-subscribe" id="{{ .Site.Params.subscribe.div_id | default "sub_div_default_id" }}">
+          <hr>
+          <p>{{ .Site.Params.subscribe.message | default "Subscribe to receive updates." }}</p>
+          <form id="{{ .Site.Params.subscribe.form_id | default "sub_form_default_id" }}" class="app-header-subscribe-form" action="{{ .Site.Params.subscribe.endpoint | default "example.com" }}" method="{{ .Site.Params.subscribe.method | default "post" }}">
+            <input type="email" name="email_address" placeholder="email@example.com" required>
+            <input type="submit" value="Subscribe">
+          </form>
+        </div>
+      {{ end }}
     </header>
     <main class="app-container">
       {{ block "main" . }}
