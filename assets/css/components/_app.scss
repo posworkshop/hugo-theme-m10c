@@ -24,6 +24,66 @@
   }
 }
 
+.success-overlay {
+	opacity: 0.97;
+	visibility: visible;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: $darkest-color;
+	padding-top: 20px;
+	color: $lightest-color;
+
+	svg {
+		color: $primary-color;
+	}
+
+	&.initial-hidden {
+		opacity: 0;
+		visibility: hidden;
+		
+	}
+
+	&.hidden {
+		opacity: 0;
+		visibility: hidden;
+		transition: visibility 0s 2s, opacity 2s linear;
+		
+	}
+}
+
+.app-header-subscribe-form {
+	position: relative;
+
+	input {
+
+		&:invalid {
+			box-shadow: none;
+		}
+		
+		&:not([type='submit']) {
+			font-size: 0.9em;
+			border: none;
+			background-color: $dark-color;
+			color: $light-color;
+			padding: 4px 6px 6px 6px;
+		}
+
+		&[type='submit'] {
+			margin-top: 12px;
+			padding: 5px 6px 7px 6px;
+			border: 0;
+			background: none;
+			box-shadow: none;
+			border-radius: 0;
+			background-color: $dark-color;
+			color: $light-color;
+		}
+	}
+}
+
 @media (min-width: 940px) {
   .app-header {
     position: fixed;

@@ -13,7 +13,7 @@
     {{ template "_internal/google_analytics.html" . }}
     {{ template "_internal/twitter_cards.html" . }}
     {{ template "_internal/opengraph.html" . }}
-
+	<noscript><style> .app-header-subscribe { display: none } </style></noscript>
   </head>
   <body>
     <header class="app-header">
@@ -25,21 +25,32 @@
           <a target="_blank" href="{{ .url }}">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
         {{ end }}
       </div>
+
       {{ if .Site.Params.subscribe.enabled}}
-        <div class="app-header-subscribe" id="{{ .Site.Params.subscribe.div_id | default "sub_div_default_id" }}">
+        <div class="app-header-subscribe" id="m10c_subscription_div">
           <hr>
-          <p>{{ .Site.Params.subscribe.message | default "Subscribe to receive updates." }}</p>
-          <form id="{{ .Site.Params.subscribe.form_id | default "sub_form_default_id" }}" class="app-header-subscribe-form" action="{{ .Site.Params.subscribe.endpoint | default "example.com" }}" method="{{ .Site.Params.subscribe.method | default "post" }}">
-            <input type="email" name="email_address" placeholder="email@example.com" required>
-            <input type="submit" value="Subscribe">
-          </form>
+		  <div class="app-header-subscribe-form">
+			<p>{{ .Site.Params.subscribe.message | default "Subscribe to receive updates." }}</p>
+			<form id="m10c_subscription_form" action="{{ .Site.Params.subscribe.endpoint | default "example.com" }}" method="{{ .Site.Params.subscribe.method | default "post" }}">
+              <input type="email" name="email_address" placeholder="email@example.com" required>
+              <input type="submit" value="Subscribe">
+			</form>
+			<div class="success-overlay initial-hidden" id="success_overlay">
+			  <div>Thank you for subscribing</div>
+			<div>{{ partial "icon.html" (dict "ctx" $ "name" "check-circle" ) }}</div>
+			</div>
+		  </div>
         </div>
       {{ end }}
+
     </header>
     <main class="app-container">
       {{ block "main" . }}
         {{ .Content }}
       {{ end }}
     </main>
+	{{ "<!-- Main Script -->" | safeHTML }}
+	{{ $script := resources.Get "js/script.js" | minify}}
+	<script src="{{ $script.Permalink }}"></script>
   </body>
 </html>
