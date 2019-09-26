@@ -4,11 +4,11 @@ m10c is a wonderful theme, but I wanted to add a email subscription widget. I th
 
 JavaScript is used for ajax calls to the subscrption endpoint. The widget is hidden for browser with JS disabled.
 
-### Consiguration
+### Configuration
 
-This theme has a email subscription widget that fires off the subscribe request to be handled by another server.
+This theme has a email subscription widget that fires off the subscribe request to be handled by an endpoint.
 
-You can customize the widget with the following setting:
+It can be customized with the following settings under `params.subscribe`:
 
 - `enabled`: turns the widget on, this has to be true for the widget to show up
 - `message`: short description for the widget
