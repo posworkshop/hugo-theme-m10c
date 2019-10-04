@@ -27,9 +27,7 @@
         {{ range .Site.Params.social }}
         <a target="_blank" href="{{ .url }}">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
         {{ end }}
-		{{ with .OutputFormats.Get "rss" -}}
-        <a target="_blank" href="{{ printf `%s` .Permalink }}">{{ partial "icon.html" (dict "ctx" $ "name" "rss" ) }}</a>
-		{{ end -}}
+        <a target="_blank" href="/index.xml">{{ partial "icon.html" (dict "ctx" $ "name" "rss" ) }}</a>
       </div>
 
       {{ if .Site.Params.subscribe.enabled}}
